@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'acmi.util'
+version '1.0-SNAPSHOT'
+
+def mainClassName = "acmi.util.Launcher"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.ivy', name: 'ivy', version: '2.4.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.0'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": mainClassName
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    exclude('META-INF\\**')
+    exclude('module.properties')
+}

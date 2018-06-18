@@ -1,0 +1,14 @@
+# Intellij Idea
+.idea/
+out/
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# Mac
+.DS_Store
+
+# Project
+lib/
